@@ -16,5 +16,5 @@ void Separate(void)
 	if(formCount != DISCRET) formCount++; else formCount = 0;
 	
 	if(currentValue >= 0) OCR1A = currentValue;
-	else OCR1B = currentValue;
+	else OCR1B = -1 * currentValue;
 }
