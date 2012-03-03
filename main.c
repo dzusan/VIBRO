@@ -12,8 +12,8 @@ int main (void)
 	while(1)
 	{
 		if (KeyboardScan())    KeyboardHandler();
-		if (EncoderScan(freq)) FreqHandler();
-		if (EncoderScan(ampl)) AmplHandler();
+		if (EncoderScan(&freqEnc)) FreqHandler();
+		if (EncoderScan(&amplEnc)) AmplHandler();
 	}
 }
 

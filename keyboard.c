@@ -1,7 +1,7 @@
 #include "modules.h"
 #include "globals.h"
 
-uint8_t KeyboardScan(void)
+uint8_t KeyboardScan(uint8_t *scanKey)
 {
 	_DDR_KB=0x0F;
     _PORT_KB=0xF0;
@@ -30,6 +30,9 @@ uint8_t KeyboardScan(void)
                            { 2 , 5 , 6 ,'B'},
                            { 1 , 2 , 3 ,'A'}};
                            
-     return = matrix[i][k];
+     *scanKey = matrix[i][k];
+     return 1;
      }
+     
+     return 0;
 }

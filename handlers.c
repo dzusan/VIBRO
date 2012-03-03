@@ -11,27 +11,33 @@ uint8_t KeyboardHandler(void *KB_value)
 			print(valueItem -> name, '/n');
 			valueItem -> (*action)();
 			return KB_value;
+			
 		case EE_MEMORY:
 			optionItem = optionItem -> next;
 			print(optionItem -> name, '/n');
 			optionItem -> (*action)();
 			return KB_value;
+			
 		case COMPUTER_CONNECTION:
 			print("Comp connect");
 			return KB_value;
+			
 		case START_STOP:
 			StartStop();
 			return KB_value;
+			
 		case UP:
 			if(KB_value) KB_value++;
 			print(cleanline);
 			print(itoa(KB_value);
 			return KB_value;
+			
 		case DOWN:
 			if(KB_value) KB_value--;
 			print(cleanline);
 			print(itoa(KB_value);
 			return KB_value;
+			
 		case '0'...'9':
 			if(KB_value){
 				KB_value = 10 * KB_value + atoi(key);
@@ -91,6 +97,6 @@ uint8_t FreqHandler(void)
 
 uint8_t AmplHandler(void)
 {
-	ampl = ampl.value * AMP_RATE;
+	Conf.use = amplEnc.value * AMP_RATE;
 	return 1;
 }

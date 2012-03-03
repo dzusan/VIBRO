@@ -1,13 +1,20 @@
+//Discrtisation of signal
+#define DISCRET 100
+
+//Amplitude
+#define AMP_RATE 0.286
+
+
 //Encoders
 
-/*typedef struct{
+typedef struct{
 	uint8_t mask;
 	uint8_t state;
 	uint8_t value;
 }Encoder;
 
-Encoder *freq;
-Encoder *ampl;*/
+Encoder freqEnc = {0x3, 0, 0};
+Encoder amplEnc = {0x6, 0, 0};
 
 typedef struct{
 	uint16_t freq;
@@ -15,19 +22,11 @@ typedef struct{
 	char shape[DISCRET];
 }Conf;
 
+Conf use;
+uint8_t shapeCount = 0;
 
 //Keyboard
-
 //uint8_t key;
-
-//Discrtisation of signal
-#define DISCRET 100
-
-
-//Amplitude
-
-uint8_t ampl;
-#define AMP_RATE 0.286
 
 //Menu items
 enum item{
@@ -45,11 +44,11 @@ typedef struct PROGMEM{
 	void (*action)(void);
 }MenuItem;
 
-MenuItem freqValue  {"Frequency", amplValue,  FreqHandler};
-MenuItem amplValue  {"Amplitude", shapeValue, AmplHandler};
-MenuItem shapeValue {"Shape",     freqValue,  FreqHandler};
-MenuItem saveOption {"Save",      loadOption, SaveHandler};
-MenuItem loadOption {"Load",      saveOption, LoadHandler};
+MenuItem freqValue  = {"Frequency", amplValue,  FreqHandler};
+MenuItem amplValue  = {"Amplitude", shapeValue, AmplHandler};
+MenuItem shapeValue = {"Shape",     freqValue,  FreqHandler};
+MenuItem saveOption = {"Save",      loadOption, SaveHandler};
+MenuItem loadOption = {"Load",      saveOption, LoadHandler};
 
-MenuItem valueItem;
-MenuItem optionItem;
+MenuItem valueItem  = shapeValue;
+MenuItem optionItem = loadOption;

@@ -1,7 +1,7 @@
 #include "modules.h"
 #include "globals.h"
 
-void Furien(void)
+inline void Furien(void)
 {
 	if(count_sin != DISCRET) count_sin++; else count_sin = 0;
 	if(count_cos != DISCRET) count_cos++; else count_cos = 0;
@@ -9,12 +9,11 @@ void Furien(void)
 	OCR1B = sinus[count_cos];
 }
 
-void Separate(void)
+inline void Separate(void)
 {
-	uint8_t currentValue = form[formCount];
-	
-	if(formCount != DISCRET) formCount++; else formCount = 0;
+	uint8_t currentValue = use.shape[shapeCount++];
 	
 	if(currentValue >= 0) OCR1A = currentValue;
 	else OCR1B = -1 * currentValue;
+	
 }
