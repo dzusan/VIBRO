@@ -10,22 +10,23 @@ indent_mode=2
 [project]
 name=VIBRO
 base_path=/home/dzusan/avr/VIBRO/VIBRO
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=426;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/conunction.c;0;4
-FILE_NAME_1=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/encoders.c;0;4
-FILE_NAME_2=851;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/globals.h;0;4
-FILE_NAME_3=703;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/handlers.c;0;4
-FILE_NAME_4=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/init.c;0;4
-FILE_NAME_5=86;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/keyboard.c;0;4
-FILE_NAME_6=42;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/main.c;0;4
-FILE_NAME_7=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/modules.h;0;4
-FILE_NAME_8=0;None;0;16;1;1;0;/home/dzusan/avr/VIBRO/VIBRO/README;0;4
+current_page=3
+FILE_NAME_0=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/conunction.c;0;4
+FILE_NAME_1=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/encoders.c;0;4
+FILE_NAME_2=365;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/globals.h;0;4
+FILE_NAME_3=936;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/handlers.c;0;4
+FILE_NAME_4=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/init.c;0;4
+FILE_NAME_5=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/keyboard.c;0;4
+FILE_NAME_6=146;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/main.c;0;4
+FILE_NAME_7=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/menu.c;0;4
+FILE_NAME_8=0;C;0;16;1;1;0;/home/dzusan/avr/VIBRO/modules.h;0;4
 
 [VTE]
 last_dir=/home/dzusan

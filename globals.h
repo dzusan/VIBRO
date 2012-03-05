@@ -26,7 +26,7 @@ Conf use;
 uint8_t shapeCount = 0;
 
 //Keyboard
-//uint8_t key;
+uint8_t scanKey;
 
 //Menu items
 enum item{

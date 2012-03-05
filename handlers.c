@@ -5,7 +5,7 @@ uint8_t KeyboardHandler(void *KB_value)
 {
 	uint8_t key;
 	
-	swich(key = KeyboardScan()){
+	swich(scanKey){
 		case VALUES:
 			valueItem = valueItem -> next;
 			print(valueItem -> name, '/n');
@@ -44,19 +44,16 @@ uint8_t KeyboardHandler(void *KB_value)
 				print(cleanline);
 				print(itoa(KB_value);
 				KeyboardHandler(&KB_value);
+		
+		default: return 0;
 	}
-	
-	return 1;
 }
 
-			
 uint8_t FreqHandler(void)
 {
-//Frequency configure
-
         TIMSK=(1<<OCIE2); //Timer-2
 
-        uint16_t ticks = F_CPU / (freq.value*DISCRET);
+        uint16_t ticks = F_CPU / (use.freq*DISCRET);
         uint8_t tickPeriod;
         uint16_t cycle=0; //Overflow cycles
         while(1)
@@ -69,19 +66,19 @@ uint8_t FreqHandler(void)
                     tickPeriod = ticks;
                     break;
                 }
-                if ((cycle > 1) && (cycle <= 8)) //Prescaler - 8
+                if ((cycle >= 1) && (cycle < 8)) //Prescaler - 8
                 {
                     TCCR2=1<<CS01;
                     tickPeriod = ticks/8;
                     break;
                 }
-                if ((cycle > 8) && (cycle <= 32)) //Prescaler - 32
+                if ((cycle >= 8) && (cycle < 32)) //Prescaler - 32
                 {
                     TCCR2 = 1 << CS01 | 1 << CS00;
                     tickPeriod = ticks/32;
                     break;
                 }
-                if ((cycle > 64) && (cycle <= 64)) //Prescaler - 64
+                if ((cycle >= 64) && (cycle < 64)) //Prescaler - 64
                 {
                     TCCR2 = 1 << CS02;
                     tickPeriod = ticks/64;
@@ -97,6 +94,6 @@ uint8_t FreqHandler(void)
 
 uint8_t AmplHandler(void)
 {
-	Conf.use = amplEnc.value * AMP_RATE;
+	use.ampl = amplEnc.value * AMP_RATE;
 	return 1;
 }
