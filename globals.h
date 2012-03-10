@@ -26,7 +26,8 @@ Conf use;
 uint8_t shapeCount = 0;
 
 //Keyboard
-//uint8_t key;
+uint8_t scanKey;
+uint8_t keyBan_FLAG = 0; //Do not rescanning keyboard
 
 //Menu items
 enum item{

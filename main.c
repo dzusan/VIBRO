@@ -11,9 +11,14 @@ int main (void)
 
 	while(1)
 	{
-		if (KeyboardScan())    KeyboardHandler();
-		if (EncoderScan(&freqEnc)) FreqHandler();
-		if (EncoderScan(&amplEnc)) AmplHandler();
+		if(keyBan_FLAG){ //If action key already pushed in KeyboardDigit
+			keyBan_FLAG = 0;
+			KeyboardHandler();
+		}
+		else if(KeyboardScan()) KeyboardHandler();
+		
+		if(EncoderScan(&freqEnc)) FreqHandler();
+		if(EncoderScan(&amplEnc)) AmplHandler();
 	}
 }
 

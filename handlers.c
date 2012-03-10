@@ -1,59 +1,71 @@
 #include "modules.h"
 #include "globals.h"
 
-uint8_t KeyboardHandler(void *KB_value)
+
+uint8_t KeyboardAction()
 {
-	uint8_t key;
-	
-	swich(key = KeyboardScan()){
+	switch(scanKey){
+		
 		case VALUES:
 			valueItem = valueItem -> next;
 			print(valueItem -> name, '/n');
 			valueItem -> (*action)();
-			return KB_value;
+			return 1;
 			
 		case EE_MEMORY:
 			optionItem = optionItem -> next;
 			print(optionItem -> name, '/n');
 			optionItem -> (*action)();
-			return KB_value;
+			return 1;
 			
 		case COMPUTER_CONNECTION:
 			print("Comp connect");
-			return KB_value;
+			return 1;
 			
 		case START_STOP:
 			StartStop();
-			return KB_value;
-			
-		case UP:
-			if(KB_value) KB_value++;
-			print(cleanline);
-			print(itoa(KB_value);
-			return KB_value;
-			
-		case DOWN:
-			if(KB_value) KB_value--;
-			print(cleanline);
-			print(itoa(KB_value);
-			return KB_value;
-			
-		case '0'...'9':
-			if(KB_value){
-				KB_value = 10 * KB_value + atoi(key);
-				print(cleanline);
-				print(itoa(KB_value);
-				KeyboardHandler(&KB_value);
+			return 1;
 	}
 	
-	return 1;
+	return 0;
 }
 
+		
+uint8_t KeyboardDigit(void *KB_value)
+{	
+	while(!KeyboardScan);
+	
+	switch(scanKey){
+		
+		case UP:
+			KB_value++;
+			print(cleanline);
+			print(itoa(KB_value));
+			KeyboardHandler(&KB_value);
 			
+		case DOWN:
+			KB_value--;
+			print(cleanline);
+			print(itoa(KB_value));
+			KeyboardHandler(&KB_value);
+			
+		case '0'...'9':
+			KB_value = 10 * KB_value + atoi(key);
+			print(cleanline);
+			print(itoa(KB_value);
+			KeyboardHandler(&KB_value);
+			
+		default: 
+			keyBan_FLAG = 1;
+			return 1;
+	}
+	
+	return 0;
+}
+
+
 uint8_t FreqHandler(void)
 {
-//Frequency configure
-
         TIMSK=(1<<OCIE2); //Timer-2
 
         uint16_t ticks = F_CPU / (freq.value*DISCRET);
@@ -63,15 +75,15 @@ uint8_t FreqHandler(void)
         {
             if ((uint16_t)ticks/256 <= cycle)
             {
-                if (cycle==0) //Prescaler - 1
+                if (cycle == 0) //Prescaler - 1
                 {
-                    TCCR2=1<<CS00;
+                    TCCR2 = 1 << CS00;
                     tickPeriod = ticks;
                     break;
                 }
                 if ((cycle > 1) && (cycle <= 8)) //Prescaler - 8
                 {
-                    TCCR2=1<<CS01;
+                    TCCR2 = 1 << CS01;
                     tickPeriod = ticks/8;
                     break;
                 }
@@ -97,6 +109,6 @@ uint8_t FreqHandler(void)
 
 uint8_t AmplHandler(void)
 {
-	Conf.use = amplEnc.value * AMP_RATE;
+	use.ampl = amplEnc.value;
 	return 1;
 }
