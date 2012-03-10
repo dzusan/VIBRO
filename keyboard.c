@@ -30,7 +30,8 @@ uint8_t KeyboardScan()
                            { 2 , 5 , 6 ,'B'},
                            { 1 , 2 , 3 ,'A'}};
                            
-     scanKey = matrix[i][k];
+     scanKey= matrix[i][k];
+
      return 1;
      }
      

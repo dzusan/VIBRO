@@ -4,7 +4,7 @@
 
 uint8_t KeyboardAction()
 {
-	switch(scanKey){
+	swich(scanKey){
 		
 		case VALUES:
 			valueItem = valueItem -> next;
@@ -63,12 +63,11 @@ uint8_t KeyboardDigit(void *KB_value)
 	return 0;
 }
 
-
 uint8_t FreqHandler(void)
 {
         TIMSK=(1<<OCIE2); //Timer-2
 
-        uint16_t ticks = F_CPU / (freq.value*DISCRET);
+        uint16_t ticks = F_CPU / (use.freq*DISCRET);
         uint8_t tickPeriod;
         uint16_t cycle=0; //Overflow cycles
         while(1)
@@ -81,19 +80,19 @@ uint8_t FreqHandler(void)
                     tickPeriod = ticks;
                     break;
                 }
-                if ((cycle > 1) && (cycle <= 8)) //Prescaler - 8
+                if ((cycle >= 1) && (cycle < 8)) //Prescaler - 8
                 {
                     TCCR2 = 1 << CS01;
                     tickPeriod = ticks/8;
                     break;
                 }
-                if ((cycle > 8) && (cycle <= 32)) //Prescaler - 32
+                if ((cycle >= 8) && (cycle < 32)) //Prescaler - 32
                 {
                     TCCR2 = 1 << CS01 | 1 << CS00;
                     tickPeriod = ticks/32;
                     break;
                 }
-                if ((cycle > 64) && (cycle <= 64)) //Prescaler - 64
+                if ((cycle >= 64) && (cycle < 64)) //Prescaler - 64
                 {
                     TCCR2 = 1 << CS02;
                     tickPeriod = ticks/64;
