@@ -1,68 +1,6 @@
 #include "modules.h"
 #include "globals.h"
 
-
-uint8_t KeyboardAction()
-{
-	swich(scanKey){
-		
-		case VALUES:
-			valueItem = valueItem -> next;
-			print(valueItem -> name, '/n');
-			valueItem -> (*action)();
-			return 1;
-			
-		case EE_MEMORY:
-			optionItem = optionItem -> next;
-			print(optionItem -> name, '/n');
-			optionItem -> (*action)();
-			return 1;
-			
-		case COMPUTER_CONNECTION:
-			print("Comp connect");
-			return 1;
-			
-		case START_STOP:
-			StartStop();
-			return 1;
-	}
-	
-	return 0;
-}
-
-		
-uint8_t KeyboardDigit(void *KB_value)
-{	
-	while(!KeyboardScan);
-	
-	switch(scanKey){
-		
-		case UP:
-			KB_value++;
-			print(cleanline);
-			print(itoa(KB_value));
-			KeyboardHandler(&KB_value);
-			
-		case DOWN:
-			KB_value--;
-			print(cleanline);
-			print(itoa(KB_value));
-			KeyboardHandler(&KB_value);
-			
-		case '0'...'9':
-			KB_value = 10 * KB_value + atoi(key);
-			print(cleanline);
-			print(itoa(KB_value);
-			KeyboardHandler(&KB_value);
-			
-		default: 
-			keyBan_FLAG = 1;
-			return 1;
-	}
-	
-	return 0;
-}
-
 uint8_t FreqHandler(void)
 {
         TIMSK=(1<<OCIE2); //Timer-2
@@ -72,7 +10,7 @@ uint8_t FreqHandler(void)
         uint16_t cycle=0; //Overflow cycles
         while(1)
         {
-            if ((uint16_t)ticks/256 <= cycle)
+            if ((uint16_t)(ticks/256) <= cycle)
             {
                 if (cycle == 0) //Prescaler - 1
                 {
@@ -104,10 +42,4 @@ uint8_t FreqHandler(void)
 
         OCR2 = tickPeriod;
         return 1;
-}
-
-uint8_t AmplHandler(void)
-{
-	use.ampl = amplEnc.value;
-	return 1;
 }

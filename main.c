@@ -10,15 +10,17 @@ int main (void)
 	PwmInit();
 
 	while(1)
-	{
-		if(keyBan_FLAG){ //If action key already pushed in KeyboardDigit
-			keyBan_FLAG = 0;
-			KeyboardHandler();
+	{		
+		if(EncoderScan(&freqEnc)){
+			ConvertFreq();
+			FreqHandler();
+			LcdTable(use.freq, use.ampl, "sinus");
 		}
-		else if(KeyboardScan()) KeyboardHandler();
 		
-		if(EncoderScan(&freqEnc)) FreqHandler();
-		if(EncoderScan(&amplEnc)) AmplHandler();
+		if(EncoderScan(&amplEnc)){
+			ConvertAmpl();
+			LcdTable(use.freq, use.ampl, "sinus");
+		}
 	}
 }
 

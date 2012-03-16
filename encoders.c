@@ -9,7 +9,7 @@ uint8_t EncoderScan(Encoder *Changer)
 	switch(fullState)
 	{
 		case 0x2: case 0x4: case 0xB: case 0xD:
-			if(Changer -> value < 255) Changer -> value ++;
+			if(Changer -> value < 65500) Changer -> value ++;
 			Changer -> state = newValue;
 			return 1;
 

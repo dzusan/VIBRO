@@ -8,16 +8,15 @@
 uint8_t EncoderScan(Encoder *);
 
 //handlers.c
-uint8_t KeyboardHandler(void);
 uint8_t FreqHandler(void);
-uint8_t AmplHandler(void);
-
-//keyboard.c
-uint8_t KeyboardScan(void);
 
 //init.c
 void PwmInit(void);
 
 //conunction.c
-void Furien(void);
-void Separate(void);
+inline void Furien(void);
+inline void Separate(void);
+
+//convert.c
+uint8_t ConvertAmpl(void);
+uint8_t ConvertFreq(void);

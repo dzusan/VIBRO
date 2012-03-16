@@ -1,55 +1,38 @@
 //Discrtisation of signal
 #define DISCRET 100
 
-//Amplitude
-#define AMP_RATE 0.286
+//Sinus to cosinus shift
+#define SHIFT 25
 
+//Amplitude qualty
+#define AMPL_DISCRET 60
+
+//Maximal frequency of main signal
+#define MAX_FREQ 2000
 
 //Encoders
 
 typedef struct{
 	uint8_t mask;
 	uint8_t state;
-	uint8_t value;
+	uint16_t value;
 }Encoder;
 
-Encoder freqEnc = {0x3, 0, 0};
-Encoder amplEnc = {0x6, 0, 0};
+volatile Encoder freqEnc = {0x3, 0, 0};
+volatile Encoder amplEnc = {0x6, 0, 0};
 
+//Data
 typedef struct{
 	uint16_t freq;
 	uint8_t ampl;
 	char shape[DISCRET];
-}Conf;
+}Data;
 
-Conf use;
-uint8_t shapeCount = 0;
+volatile Data use;
 
-//Keyboard
-uint8_t scanKey;
-uint8_t keyBan_FLAG = 0; //Do not rescanning keyboard
+//Separate shape count
+volatile uint8_t shapeCount = 0;
 
-//Menu items
-enum item{
-	VALUES;
-	EE_MEMORY;
-	COMPUTER_CONNECTION;
-	START_STOP;
-	UP;
-	DOWN;
-};
-
-typedef struct PROGMEM{
-	char *name;
-	menuItem *next;
-	void (*action)(void);
-}MenuItem;
-
-MenuItem freqValue  = {"Frequency", amplValue,  FreqHandler};
-MenuItem amplValue  = {"Amplitude", shapeValue, AmplHandler};
-MenuItem shapeValue = {"Shape",     freqValue,  FreqHandler};
-MenuItem saveOption = {"Save",      loadOption, SaveHandler};
-MenuItem loadOption = {"Load",      saveOption, LoadHandler};
-
-MenuItem valueItem  = shapeValue;
-MenuItem optionItem = loadOption;
+//Furien shape count
+volatile uint8_t countSin = 0;
+volatile uint8_t countCos = SHAPE;

@@ -3,10 +3,10 @@
 
 inline void Furien(void)
 {
-	if(count_sin != DISCRET) count_sin++; else count_sin = 0;
-	if(count_cos != DISCRET) count_cos++; else count_cos = 0;
-	OCR1A = sinus[count_sin];
-	OCR1B = sinus[count_cos];
+	if(countSin != DISCRET) countSin++; else countSin = 0;
+	if(countCos != DISCRET) countCos++; else countCos = 0;
+	OCR1A = (uint8_t)(64 + sinus[countSin] * use.ampl);
+	OCR1B = (uint8_t)(64 + sinus[countCos] * use.ampl);
 }
 
 inline void Separate(void)
