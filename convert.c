@@ -20,5 +20,5 @@ uint8_t ConvertAmpl(void)
 	}
 	else amplEnc.value = AMPL_DISCRET;
 	
-	return 1;
+	return 0;
 }

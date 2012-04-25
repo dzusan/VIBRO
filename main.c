@@ -11,13 +11,13 @@ int main (void)
 
 	while(1)
 	{		
-		if(EncoderScan(&freqEnc)){
-			ConvertFreq();
-			FreqHandler();
-			LcdTable(use.freq, use.ampl, "sinus");
+		if(EncoderScan(&freqEnc)){ //Write freq-control value in EncSruct
+			ConvertFreq(); //Overflow verification (default)
+			FreqHandler(); //Timer configuration
+			LcdTable(use.freq, use.ampl, "sinus"); //Dysplay
 		}
 		
-		if(EncoderScan(&amplEnc)){
+		if(EncoderScan(&amplEnc)){ 
 			ConvertAmpl();
 			LcdTable(use.freq, use.ampl, "sinus");
 		}
@@ -27,6 +27,6 @@ int main (void)
 
 ISR(TIMER2_COMP_vect)
 {
-	Furien();
-	//Separate();
+	//Furien();
+	Separate();
 }
